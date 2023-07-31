@@ -8,19 +8,19 @@ require('dotenv').config()
 let mongoose = require('mongoose');
 app.use(bodyParser.json());
 app.use(cors())
-app.use(express.static('public'))
+app.use(express.static('public.Pictures'))
 let postModal = require('./modals/PostModal')
 mongoose.connect(process.env.MONGO_CONNECTION_STRING, { dbName: "InstaclonePosts" })
     .then(() => console.log("DataBase is Connected"))
     .catch((err) => console.log("Failed to Connect", err))
 
 let storage=multer.diskStorage({
-    destination:(req,file,cb) => {
-        cb(null,'public/Pictures')
+    destination:(req,file,callback) => {
+        callback(null,'public/Pictures')
     }
     ,
-    filename:(req,file,cb)=>{
-        cb(null,file.fieldname+"_"+Date.now()+path.extname(file.originalname))
+    filename:(req,file,callback)=>{
+        callback(null,file.fieldname+"_"+Date.now()+path.extname(file.originalname))
     }
 })
 
