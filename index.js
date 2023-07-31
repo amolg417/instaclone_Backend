@@ -8,7 +8,7 @@ require('dotenv').config()
 let mongoose = require('mongoose');
 app.use(bodyParser.json());
 app.use(cors())
-app.use(express.static('public.Pictures'))
+app.use(express.static('public/Pictures'))
 let postModal = require('./modals/PostModal')
 mongoose.connect(process.env.MONGO_CONNECTION_STRING, { dbName: "InstaclonePosts" })
     .then(() => console.log("DataBase is Connected"))
